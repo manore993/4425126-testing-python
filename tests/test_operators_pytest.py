@@ -23,3 +23,4 @@ def test_division():
     operation = "5.5 / 10"
     expected_value = 0.55
     assert sut.division(operation) == expected_value
+            
