@@ -48,10 +48,7 @@ class MockView:
     def print_result(operation, result):
         MockView.print_result_call += [(operation, result)]
         
-
-def test_run_add(mocker):
-    sut = Controller()
-    MockView.run_method_counter = 1
+def setup_mock(mocker):
     MockView.print_result_call = []
     MockView.get_user_input_counter = 0
 
@@ -60,23 +57,27 @@ def test_run_add(mocker):
     mocker.patch.object(View, 'end_message', MockView.end_message)
     mocker.patch.object(View, 'continue_message', MockView.continue_message)
     mocker.patch.object(View, 'print_result', MockView.print_result)
+
+
+
+def test_run_add(mocker):
+    sut = Controller()
+    MockView.run_method_counter = 1
     
+    setup_mock(mocker)
+
     sut.run()
+
     assert len(MockView.print_result_call) == 1
     assert MockView.print_result_call[0] == ("42+100", 142.0)
 
 def test_run_sub(mocker):
     sut = Controller()
     MockView.run_method_counter = 2
-    MockView.print_result_call = []
-    MockView.get_user_input_counter = 0
-
-    mocker.patch.object(View, 'print_menu', MockView.print_menu)
-    mocker.patch.object(View, 'get_user_input', MockView.get_user_input)
-    mocker.patch.object(View, 'end_message', MockView.end_message)
-    mocker.patch.object(View, 'continue_message', MockView.continue_message)
-    mocker.patch.object(View, 'print_result', MockView.print_result)
     
+    setup_mock(mocker)
+
     sut.run()
+    
     assert len(MockView.print_result_call) == 1
     assert MockView.print_result_call[0] == ("100-60", 40.0)
