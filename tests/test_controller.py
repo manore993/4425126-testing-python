@@ -34,6 +34,20 @@ class MockView:
             
             if MockView.get_user_input_counter == 2:
                 return "100-60"
+
+        if  MockView.run_method_counter == 3 :
+            if MockView.get_user_input_counter == 1:
+                return "3"
+            
+            if MockView.get_user_input_counter == 2:
+                return "2*3"
+            
+        if  MockView.run_method_counter == 4 :
+            if MockView.get_user_input_counter == 1:
+                return "4"
+            
+            if MockView.get_user_input_counter == 2:
+                return "6.0 / 2.0"
         return "5"
 
     @staticmethod
@@ -63,7 +77,7 @@ def setup_mock(mocker):
 def test_run_add(mocker):
     sut = Controller()
     MockView.run_method_counter = 1
-    
+
     setup_mock(mocker)
 
     sut.run()
@@ -81,3 +95,25 @@ def test_run_sub(mocker):
     
     assert len(MockView.print_result_call) == 1
     assert MockView.print_result_call[0] == ("100-60", 40.0)
+
+def test_run_multi(mocker):
+    sut = Controller()
+    MockView.run_method_counter = 3
+    
+    setup_mock(mocker)
+
+    sut.run()
+    
+    assert len(MockView.print_result_call) == 1
+    assert MockView.print_result_call[0] == ("2*3", 6)
+
+def test_run_div(mocker):
+    sut = Controller()
+    MockView.run_method_counter = 4
+    
+    setup_mock(mocker)
+
+    sut.run()
+    
+    assert len(MockView.print_result_call) == 1
+    assert MockView.print_result_call[0] == ("6.0 / 2.0", 3.0)
