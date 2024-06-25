@@ -122,37 +122,35 @@ def test_run_add_bis_another(mocker):
     assert MockView.print_result_call[0] == ("100+40+50", 190)
     assert MockView.print_result_call[1] == ("1+2+3+4+5", 15)
 
-
-
-# def test_run_sub(mocker):
-#     sut = Controller()
-#     MockView.run_method_counter = 2
+def test_run_sub(mocker):
+    sut = Controller()
+    MockView.user_input_database = ("2", "100-60", "5")
     
-#     setup_mock(mocker)
+    setup_mock(mocker)
 
-#     sut.run()
+    sut.run()
     
-#     assert len(MockView.print_result_call) == 1
-#     assert MockView.print_result_call[0] == ("100-60", 40.0)
+    assert len(MockView.print_result_call) == 1
+    assert MockView.print_result_call[0] == ("100-60", 40.0)
 
-# def test_run_multi(mocker):
-#     sut = Controller()
-#     MockView.run_method_counter = 3
+def test_run_multi(mocker):
+    sut = Controller()
+    MockView.user_input_database = ("3", "2*3", "5")
     
-#     setup_mock(mocker)
+    setup_mock(mocker)
 
-#     sut.run()
+    sut.run()
     
-#     assert len(MockView.print_result_call) == 1
-#     assert MockView.print_result_call[0] == ("2*3", 6)
+    assert len(MockView.print_result_call) == 1
+    assert MockView.print_result_call[0] == ("2*3", 6)
 
-# def test_run_div(mocker):
-#     sut = Controller()
-#     MockView.run_method_counter = 4
+def test_run_div(mocker):
+    sut = Controller()
+    MockView.user_input_database = ("4", "6.0 / 2.0", "5")
     
-#     setup_mock(mocker)
+    setup_mock(mocker)
 
-#     sut.run()
+    sut.run()
     
-#     assert len(MockView.print_result_call) == 1
-#     assert MockView.print_result_call[0] == ("6.0 / 2.0", 3.0)
+    assert len(MockView.print_result_call) == 1
+    assert MockView.print_result_call[0] == ("6.0 / 2.0", 3.0)
