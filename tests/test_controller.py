@@ -146,11 +146,12 @@ def test_run_multi(mocker):
 
 def test_run_div(mocker):
     sut = Controller()
-    MockView.user_input_database = ("4", "6.0 / 2.0", "5")
+    MockView.user_input_database = ("4", "6.0 / 2.0", "4", "6.0 / 0.0", "5")
     
     setup_mock(mocker)
 
     sut.run()
     
-    assert len(MockView.print_result_call) == 1
+    assert len(MockView.print_result_call) == 2
     assert MockView.print_result_call[0] == ("6.0 / 2.0", 3.0)
+    assert MockView.print_result_call[1] == ("6.0 / 0.0", None)
