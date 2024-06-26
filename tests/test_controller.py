@@ -93,25 +93,6 @@ def setup_mock(mocker):
     mocker.patch.object(Operators, 'multiplication', MockOperators.multiplication)
     mocker.patch.object(Operators, 'division', MockOperators.division)    
 
-# def setup_mock(mocker):
-#     MockView.print_result_call = []
-#     MockView.get_user_input_counter = 0
-#     MockOperators.addition_counter = 0
-#     MockOperators.substraction_counter = 0
-#     MockOperators.multiplication_counter = 0
-#     MockOperators.division_counter = 0
-
-#     mocker.patch.object(View, 'print_menu', MockView.print_menu)
-#     mocker.patch.object(View, 'get_user_input', MockView.get_user_input)
-#     mocker.patch.object(View, 'end_message', MockView.end_message)
-#     mocker.patch.object(View, 'continue_message', MockView.continue_message)
-#     mocker.patch.object(View, 'print_result', MockView.print_result)
-#     mocker.patch.object(Operators, 'addition', MockOperators.addition)
-#     mocker.patch.object(Operators, 'substraction', MockOperators.substraction)
-#     mocker.patch.object(Operators, 'multiplication', MockOperators.multiplication)
-#     mocker.patch.object(Operators, 'division', MockOperators.division)
-
-
 def test_run_add(setup_mock):
     sut = Controller()
     MockView.user_input_database = ("1", "100+40", "5")
